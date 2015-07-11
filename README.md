@@ -12,6 +12,8 @@ npm install gh-md-urls --save
 
 ## Example
 
+Take the following `readme.md` file:
+
 ```md
 ## header
 
