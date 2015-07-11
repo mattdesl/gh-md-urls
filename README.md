@@ -93,7 +93,7 @@ The node is a text link: `[foo](#blah)`
 }
 ```
 
-#### `"link"` (image)
+##### `"link"` (image)
 
 The node is a link containing an image node: `[![title](image.png)](#foo)`
 
@@ -109,7 +109,7 @@ The node is a link containing an image node: `[![title](image.png)](#foo)`
 }
 ```
 
-## `"reference"`
+##### `"reference"`
 
 The node is a reference/definition/footer: 
 
