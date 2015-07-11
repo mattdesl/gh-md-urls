@@ -1,0 +1,47 @@
+{
+  "name": "gh-md-urls",
+  "version": "1.0.0",
+  "description": "find and resolve URLs in GitHub Markdown",
+  "main": "index.js",
+  "license": "MIT",
+  "author": {
+    "name": "Matt DesLauriers",
+    "email": "dave.des@gmail.com",
+    "url": "https://github.com/mattdesl"
+  },
+  "dependencies": {
+    "github-url-to-object": "^1.5.2",
+    "mdast-util-visit": "^0.1.1"
+  },
+  "devDependencies": {
+    "faucet": "0.0.1",
+    "tape": "^4.0.0"
+  },
+  "scripts": {
+    "test": "node test/index.js | faucet"
+  },
+  "keywords": [
+    "md",
+    "ast",
+    "url",
+    "mdast",
+    "urls",
+    "image",
+    "images",
+    "link",
+    "links",
+    "anchor",
+    "anchors",
+    "markdown",
+    "mark",
+    "down"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/mattdesl/gh-md-urls.git"
+  },
+  "homepage": "https://github.com/mattdesl/gh-md-urls",
+  "bugs": {
+    "url": "https://github.com/mattdesl/gh-md-urls/issues"
+  }
+}
