@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "github-url-to-object": "^1.5.2",
+    "mdast": "^0.26.2",
     "mdast-util-visit": "^0.1.1"
   },
   "devDependencies": {
