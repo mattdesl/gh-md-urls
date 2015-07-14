@@ -2,7 +2,7 @@ var mdast = require('mdast')
 var visit = require('mdast-util-visit')
 var gh = require('github-url-to-object')
 var URL = require('url')
-var path = require('path')
+var urljoin = require('urljoin')
 
 module.exports = getMarkdownURLs
 function getMarkdownURLs (md, opt) {
@@ -58,6 +58,7 @@ function getMarkdownURLs (md, opt) {
   }  
   
   if (opt.repository) {
+    var branch = opt.branch || 'master'
     var repo = gh(opt.repository)
     if (!repo) {
       throw new Error('invalid GitHub repository URL: ' + opt.repository)
@@ -72,19 +73,22 @@ function getMarkdownURLs (md, opt) {
         return
       }
       
-      if (node.type === 'image') {
-        node.url = 'https://raw.githubusercontent.com/' + path.join(
+      var isAnchor = node.type === 'link' && !parsed.path
+      
+      if (node.type === 'image' || (opt.raw && !isAnchor)) {
+        // use raw file
+        node.url = urljoin('https://raw.githubusercontent.com/',
           repo.user,
           repo.repo,
-          'master',
-          parsed.href
-        )
+          branch,
+          parsed.href)
       } else if (node.type === 'link') {
-        // skip #hash fragments
-        if (!parsed.path) {
+        if (isAnchor) {
+          // #hash fragments
           node.url = fragmentBase + node.url
         } else {
-          node.url = repo.https_url + path.join('/blob/master/', parsed.href)
+          // link to for e.g. another readme
+          node.url = urljoin(repo.https_url, 'blob', branch, parsed.href)
         }
       }
     })

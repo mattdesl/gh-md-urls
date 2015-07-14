@@ -62,8 +62,10 @@ Result of `urls`:
 
 Returns a list of URL nodes representing all Markdown links in the source String or File `markdown`. Options:
 
-- `repository` - if set, resolves all relative paths to absolute paths based on this repository URL
-- `baseUrl` - if set, prepends hash fragments like `#some-section` with the given base URL (non-string values default to `repository`)
+- `repository` (String) if set, resolves all relative paths to absolute paths based on this repository URL
+- `raw` (Boolean) if true, all links are resolved to their `raw.githubusercontent.com/` link instead of a blob
+- `branch` (String) the branch to resolve to, default master
+- `baseUrl` (String) if set, prepends hash fragments like `#some-section` with the given base URL (non-string values default to `repository` option)
 
 HTML image/anchors are not parsed.
 

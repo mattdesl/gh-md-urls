@@ -19,6 +19,31 @@ test('resolves link URL', function(t) {
   t.end()
 })
 
+test('resolves raw and branch URLs', function(t) {
+  var str = '[text](./LICENSE.md)'
+  
+  var result = getUrls(str, { 
+    raw: true,
+    repository: 'https://github.com/mattdesl/gh-md-urls' 
+  })
+  t.deepEqual(result, [{
+    text: 'text',
+    type: 'link',
+    url: 'https://raw.githubusercontent.com/mattdesl/gh-md-urls/master/LICENSE.md'
+  }], 'resolves to blob url')
+  
+  result = getUrls(str, { 
+    branch: 'gh-pages',
+    repository: 'https://github.com/mattdesl/gh-md-urls' 
+  })
+  t.deepEqual(result, [{
+    text: 'text',
+    type: 'link',
+    url: 'https://github.com/mattdesl/gh-md-urls/blob/gh-pages/LICENSE.md'
+  }], 'resolves to blob url')
+  t.end()
+})
+
 test('returns all URLs in a markdown file', function(t) {
   var str = fs.readFileSync(path.join(__dirname, 'minimal.md'), 'utf8')  
   var result = getUrls(str, {
